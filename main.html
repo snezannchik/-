@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+    <title>Программа лояльности магазина сладостей</title>
+</head>
+<body>
+    <!-- Форма авторизации -->
+    <div class="auth">
+        <div class="main">
+            <div class="logo">
+                <img src="img/лого.svg" alt="">
+            </div>
+            <div class="login">
+                <h1 class="login_title">ВХОД</h1>
+                <hr>
+                <form class="login-form" onsubmit="event.preventDefault(); authenticate();">
+                    <div class="input-field">
+                        <input class="field" type="text" name="username" placeholder="ЛОГИН" required class="username">
+                    </div>
+                    <div class="input-field">
+                        <input class="field" type="password" name="password" placeholder="ПАРОЛЬ" required class="password">
+                    </div>
+                    <button type="submit" class="login-button">ВОЙТИ</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Панель администратора, скрытая до авторизации -->
+<div class="admin_cont" id="admin-content" style="display: none;">
+    <header class="header_admin">
+        <div class="admin_logo">
+            <img src="img/logomin.svg" alt="Лого">
+            <span class="admin_logo_text">ПРОГРАММА ЛОЯЛЬНОСТИ<br>МАГАЗИНА СЛАДОСТЕЙ</span>
+        </div>
+        <nav id="navigation">
+            <ul class="nav">
+                <li onclick="showSection('discounts', this)">Скидки</li>
+                <li onclick="showSection('behavior', this)">Поведение пользователей</li>
+                <li onclick="showSection('settings', this)">Настройки</li>
+                <li onclick="logout()">
+                    <img src="img/logout.svg" alt="Выйти" class="logout">
+                </li>
+            </ul>            
+            <div class="underline"></div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Раздел Скидки -->
+        <section id="discounts" class="tab-content" style="display: block;">
+            <div class="table-container">
+                <table class="discount-table">
+                    <thead>
+                        <tr>
+                            <th>Имя клиента</th>
+                            <th>Общая сумма покупок</th>
+                            <th>Текущая скидка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Иванов Иван Иванович</td>
+                            <td>5</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>Петрова Анна Сергеевна</td>
+                            <td>10</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Сидоров Сергей Петрович</td>
+                            <td>1</td>
+                            <td>7%</td>
+                        </tr>
+                        <tr>
+                            <td>Кузнецова Ольга Викторовна</td>
+                            <td>2</td>
+                            <td>12%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <div class="pagination">
+                                    <img src="img/prev.svg" alt="Назад" class="pagination-icon">
+                                    <img src="img/next.svg" alt="Вперед" class="pagination-icon">
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>        
+
+        <!-- Раздел Поведение пользователей -->
+        <section id="behavior" class="tab-content" style="display: none;">
+            <h2>Поведение пользователей</h2>
+            <p>Информация о поведении пользователей будет здесь.</p>
+        </section>
+
+        <!-- Раздел Настройки -->
+        <section id="settings" class="tab-content" style="display: none;">
+            <h2>Настройки</h2>
+            <p>Настройки панели администратора.</p>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
