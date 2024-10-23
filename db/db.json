@@ -2,35 +2,11 @@
     "users": [
       {
         "userId": 1,
-        "firstName": "Иван",
-        "lastName": "Иванов",
-        "middleName": "Иванович",
-        "login": "ivanov",
-        "password": "password123"
-      },
-      {
-        "userId": 2,
-        "firstName": "Анна",
-        "lastName": "Петрова",
+        "firstName": "Админ",
+        "lastName": "Снежанна",
         "middleName": "Сергеевна",
-        "login": "petrova",
-        "password": "securepass"
-      },
-      {
-        "userId": 3,
-        "firstName": "Сергей",
-        "lastName": "Сидоров",
-        "middleName": "Алексеевич",
-        "login": "sidorov",
-        "password": "mypassword"
-      },
-      {
-        "userId": 4,
-        "firstName": "Мария",
-        "lastName": "Кузнецова",
-        "middleName": "Викторовна",
-        "login": "kuznetsova",
-        "password": "adminpass"
+        "login": "sneza",
+        "password": "555"
       }
     ],
     "discounts": [
