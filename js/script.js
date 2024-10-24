@@ -9,7 +9,7 @@ const authenticate = () => {
     document.querySelector('input[name="username"]').classList.remove('invalid');
     document.querySelector('input[name="password"]').classList.remove('invalid');
 
-    fetch('db/db.json')
+    fetch('/db/db.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Ошибка загрузкии JSON файла');
@@ -76,7 +76,6 @@ const logout = () => {
         passwordInput.value = '';
     }
 
-
     const items = document.querySelectorAll('#navigation li');
     items.forEach(item => item.classList.remove('active'));
 
@@ -113,6 +112,25 @@ window.addEventListener('load', () => {
         setActive(activeItem);
     }
 });
+
+// рендер табл скидки
+function renderDiscountTable(data) {
+    const tableBody = document.querySelector('.discount-table tbody');
+    tableBody.innerHTML = ''; 
+
+    data.customers.forEach(customer => {
+        const discount = data.discounts.find(d => d.discountId === customer.discountId);
+        const discountPercentage = discount ? `${discount.percentage}%` : '0%';
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.lastName} ${customer.firstName} ${customer.middleName}</td>
+            <td>${customer.order_count}</td>
+            <td>${discountPercentage}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
 
 // Функция для загрузки данных из JSON файла
 function loadJSONData() {
@@ -182,10 +200,17 @@ function saveDiscountSettings() {
 
             // привеняем новые данные
             renderDiscountTable({ customers: updatedCustomers, discounts: data.discounts });
+            
         })
         .catch(error => {
             console.error('Ошибка:', error);
         });
+//чтобы скидку применить таблицу не сбрасывать!!!!!
+// const DiscountTablee = {
+//     updatedCustomers: updatedCustomers,
+//     discount: data
+// }
+// localStorage.setItem('DiscountTablee', JSON.stringify(DiscountTablee));
 };
 
 // Загружаем наши настройки скидки
@@ -202,24 +227,19 @@ window.addEventListener('load', () => {
     }
 });
 
-// рендер табл скидки
-function renderDiscountTable(data) {
-    const tableBody = document.querySelector('.discount-table tbody');
-    tableBody.innerHTML = ''; 
+//чтобы скидку применить таблицу не сбрасывать!!!!!
+// window.addEventListener('load', () => {
+//     const savedDiscount = localStorage.getItem('savedDiscount');
+//     if (savedDiscount) {
+//         const DiscountTablee = JSON.parse(savedDiscount);
+//         document.getElementById('order-threshold').value = discountSettings.updatedCustomers;
+//         document.getElementById('discount-percentage').value = discountSettings.discount;
+        
+//         console.log('Загружено из localStorage:', DiscountTablee);
+//     }
+// });
 
-    data.customers.forEach(customer => {
-        const discount = data.discounts.find(d => d.discountId === customer.discountId);
-        const discountPercentage = discount ? `${discount.percentage}%` : '0%';
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${customer.lastName} ${customer.firstName} ${customer.middleName}</td>
-            <td>${customer.order_count}</td>
-            <td>${discountPercentage}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
+//здесь внизу была функция renderDiscountTable
 
 document.addEventListener('DOMContentLoaded', loadJSONData);
 
