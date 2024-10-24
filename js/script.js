@@ -12,7 +12,7 @@ const authenticate = () => {
     fetch('db/db.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error('Ошибка загрузки JSON файла');
+                throw new Error('Ошибка загрузкиии JSON файла');
             }
             return response.json();
         })
