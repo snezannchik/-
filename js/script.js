@@ -9,7 +9,7 @@ const authenticate = () => {
     document.querySelector('input[name="username"]').classList.remove('invalid');
     document.querySelector('input[name="password"]').classList.remove('invalid');
 
-    fetch('/db/db.json')
+    fetch('db/db.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Ошибка загрузки JSON файла');
